@@ -4,10 +4,7 @@
 
 # Libraries Needed for the Program
 import os
-import json
-import urllib.request
-import urllib.parse
-import urllib.error
+import requests
 from tkinter import *
 from tkinter import ttk
 
@@ -132,9 +129,10 @@ def apiCallDates(event, year, pageNumber):
            '&sort_hide_null=' + nullHide +
            '&sort_null_only=' + nullOnly +
            '&sort=' + sort)
-    uh = urllib.request.urlopen(url)
-    data = uh.read().decode()
-    js = json.loads(data)
+    uh = requests.get(url)
+    # data = uh.read().decode()
+    # js = json.loads(data)
+    js = uh.json()
     print(url)
     return js  # We receive a dictionary with all the info requested
 
@@ -215,9 +213,10 @@ def apiCallCandidates(event, year, pageNumber):
            '&per_page=' + perPage +
            '&page=' + page +
            '&sort=' + sort)
-    uh = urllib.request.urlopen(url)
-    data = uh.read().decode()
-    js = json.loads(data)
+    uh = requests.get(url)
+    # data = uh.read().decode()
+    # js = json.loads(data)
+    js = uh.json()
     print(url)
     return js
 
